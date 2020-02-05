@@ -1,4 +1,6 @@
 function [] = task2()
+    clc;
+    close all;
     image = imread('football_field.jpg');
     imshow(image);
     hold on
@@ -11,7 +13,8 @@ function [] = task2()
     plot([p2(1) p3(1)], [p2(2) p3(2)], 'r');
     plot([p3(1) p4(1)], [p3(2) p4(2)], 'r');
     plot([p4(1) p1(1)], [p4(2) p1(2)], 'r');
-    
+    plot([p3(1) p1(1)], [p3(2) p1(2)], 'b');
+    plot([p4(1) p2(1)], [p4(2) p2(2)], 'b');
     l1 = cross(p1, p3);
     l2 = cross(p2,p4);
     l3 = cross(p1, p2);
@@ -19,7 +22,13 @@ function [] = task2()
     pm = cross(l1, l2);
     pinf = cross(l3, l4);
     lm = cross(pm, pinf);
-    plot(l1, 'g');
+    plot(pm(1)/pm(3), pm(2)/pm(3),'x','LineWidth',2,'Color','yellow');
+    plot(pinf(1)/pinf(3), pinf(2)/pinf(3),'x','LineWidth',2,'Color','yellow');
+    plot([pinf(1)/pinf(3) p1(1)], [pinf(2)/pinf(3) p1(2)], 'b');
+    plot([pinf(1)/pinf(3) p4(1)], [pinf(2)/pinf(3) p4(2)], 'b');
+    plot([pinf(1)/pinf(3) pm(1)/pm(3)], [pinf(2)/pinf(3) pm(2)/pm(3)], 'b');
     drawnow;
     hold off;
 end
+
+
