@@ -65,7 +65,6 @@ function [newX, newY] = getnewcord(a,b,H)
 end
 function [] = drawhomographyregion(image, x,y, x1,y1, cordx, cordy)
 %     [p1,p2,p3,p4] = getpoint(cordx, cordy);
-    subplot(2,2,1);
     imshow(image);
     hold on;
 %     rect=rectangle('Position',[a,b,c, d],'Edgecolor', 'r');
@@ -74,9 +73,9 @@ function [] = drawhomographyregion(image, x,y, x1,y1, cordx, cordy)
     drawnow;
     hold off;
     
-    mask = poly2mask(cordx, cordy, size(image,1), size(image,2))
-    subplot(2,2,1);
-    imshow(mask)
+%     mask = poly2mask(cordx, cordy, size(image,1), size(image,2))
+%     subplot(2,2,1);
+%     imshow(mask)
 end
 function [p1,p2,p3,p4] = getpoint(x,y)
     p1 = [x(1) y(1) 1];
