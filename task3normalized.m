@@ -11,14 +11,15 @@ function [] = task3normalized(numpoints)
     figure(1);
     imshow(image);
     [x,y]=ginput(numpoints);
-    Tnorm = Tnorm(image);
-%     X = [x'; y'; 1 1 1 1;]'*Tnorm;
-%     [x, y] = getcoord(X);
+    
+
     figure(2);
     imshow(image1);
     [x1,y1]=ginput(numpoints);
-%     X1 = [x1'; y1'; 1 1 1 1;]'*Tnorm;
-%     [x1, y1] = getcoord(X1);
+%     x = x - mean(x);
+%     y = y - mean(y);
+%     x1 = x1 - mean(x1);
+%     y1 = y1 - mean(y1);
     A = zeros(numpoints*2,9);
     for i=1:numpoints
         A(2*i, :) = [x(i),y(i), 1,0,0,0,-x(i)*x1(i), -x1(i)*y(i), -x1(i)];
@@ -28,9 +29,6 @@ function [] = task3normalized(numpoints)
     [~,~,V] = svd(A*100);
     h = V(:,9);
     h1 = reshape(h,3,3);
-%     disp(h1);
-%     h1 = Tnorm'*h1*Tnorm;
-%     disp(h1);
     t = projective2d(h1);
     imout = imwarp(image, t, 'OutputView',imref2d(size(image)));
     figure(3);
